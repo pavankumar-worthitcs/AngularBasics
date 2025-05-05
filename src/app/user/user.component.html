@@ -1,0 +1,23 @@
+<table border="1" [cellPadding]="20" [cellSpacing]="0" align="center">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @for(user of users;track user.id;let i = $index,let isOdd = $odd){
+                @if((i+1) % 2 != 0){
+                <tr>
+                   
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+             
+              </tr>
+            }
+              }
+    </tbody>
+</table>
