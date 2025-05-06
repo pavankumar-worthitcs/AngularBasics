@@ -1,0 +1,24 @@
+<p>employee works!</p>
+<table border="1" [cellPadding]="20" [cellSpacing]="0" align="center">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Idcard</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(employee of employees;track employee.id){
+
+            <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstname}}</td>
+                <td>{{employee.lastname}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.number}}</td>
+            </tr>
+        }
+    </tbody>
+</table>

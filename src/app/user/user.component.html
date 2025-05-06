@@ -8,13 +8,13 @@
     </thead>
     <tbody>
         
-            @for(user of users;track user.id;let i = $index,let isOdd = $odd){
-                @if((i+1) % 2 != 0){
+            @for(user of users;track user.id;let i = $index, isOdd = $odd,isEven = $even){
+                @if(isEven){
                 <tr>
                    
                 <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
+                <td>{{ user.email}}</td>
              
               </tr>
             }
