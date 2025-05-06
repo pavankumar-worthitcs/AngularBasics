@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FocusComponent } from "./focus/focus.component";
 import { FormsModule, NgModel } from '@angular/forms';
@@ -16,9 +16,9 @@ import { EmployeeService } from './employee.service';
   imports: [FormsModule, CommonModule,  EmployeeComponent],
   providers: [EmployeeService],
 })
-export class AppComponent {
+export class AppComponent  {
   name = 'Pavan Kumar';
   title = `software Engineer - Trainee`;
   
- 
+
 }

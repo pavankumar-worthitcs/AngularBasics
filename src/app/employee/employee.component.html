@@ -1,7 +1,112 @@
-<p>employee works!</p>
-<table border="1" [cellPadding]="20" [cellSpacing]="0" align="center">
+
+
+<div  align="center" style="margin-top: 30px;" >
+    choose the option to register employee, create idcard for employee and delete employee details.
+    <br> <br> 
+    <div style="display: flex; justify-content: center; gap: 20px;">
+    <button (click)="selectedForm = 'register'">Register Employee</button> 
+    <button (click)="selectedForm = 'idcard'">Create ID Card</button>
+    <button (click)="selectedForm = 'delete'">Delete Employee</button>
+</div>
+  </div>
+  <br> <br>
+
+
+<!--  for Employee Registration -->
+<form *ngIf="selectedForm === 'register'" [formGroup]="employeeForm" align="center">
+    <fieldset>
+        <legend>Employee Details Registration</legend>
+    <br> <br>
+    <br>
+    <label >
+        First Name <span style="color: red;">*</span>  :
+      </label>
+    <input  formControlName="firstname" placeholder="Enter your first name.."/>
+    <br>
+    <div *ngIf="employeeForm.get('firstname')?.touched && employeeForm.get('firstname')?.invalid">
+        <p id="error">first name is required.</p>
+      </div>
+    <br>
+    <label>
+        Last Name <span style="color: red;">*</span>  :
+      </label>
+    <input formControlName="lastname" placeholder="Enter your last name.."/>
+    <br>
+     <div *ngIf="employeeForm.get('lastname')?.touched && employeeForm.get('lastname')?.invalid">
+        <p id="error">last name is required.</p>
+      </div>
+      <br>
+      <label>
+        Email <span style="color: red;">*</span>   :
+      </label>
+    <input formControlName="email" type="email" placeholder="Enter your email.."/>
+    <br> 
+    <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">
+        <p id="error">valid email is required.</p>
+      </div>
+      <br>
+    <button (click)="onRegister()" type="submit">Register</button>
+    <br>
+    <H4>{{createStatus}}</H4>
+</fieldset>
+  </form>
+<br>
+
+<!--  for Employee Idcard Registration -->
+  <form *ngIf="selectedForm === 'idcard'"[formGroup]="createIdForm" align="center">
+    <fieldset>
+        <legend>Create new Idcard For Employee</legend>
+        <br> <br>
+        <label>
+            EmployeeId <span style="color: red;">*</span>   :
+          </label>
+        <input formControlName="employeeId" type="number" placeholder="Enter your Employee id.."/>
+        <br> <br>
+        <div *ngIf="createIdForm.get('employeeId')?.touched && createIdForm.get('employeeId')?.invalid">
+            <p id="error">Employee Id is required.</p>
+          </div>
+          <br>
+        <div formGroupName="IdCard">
+            <label>
+                IdCard Number <span style="color: red;">*</span>   :
+              </label>
+    <input formControlName="number"  placeholder="Enter Idcard Number.."/></div>
+    <br> <br>
+    <div *ngIf="createIdForm.get('IdCard.number')?.touched && createIdForm.get('IdCard.number')?.invalid">
+        <p id="error">Id card number is required</p>
+      </div>
+    <br>
+    <button (click)="onUpdate()">Create</button>
+    <br>
+    <H4>{{updateStatus}}</H4>
+</fieldset>
+  </form>
+
+  <br> <br>
+  
+  <!-- for deletion of employee based on employeeId -->
+  <form *ngIf="selectedForm === 'delete'" [formGroup]="deleteDetails" align="center">
+    <fieldset>
+        <legend>Delete Employee Details</legend>
+        <br> <br>
+        <label>
+            EmployeeId <span style="color: red;">*</span>   :
+          </label>
+        <input formControlName="employeeId" type="number" placeholder="Enter your Employee Id"/>
+        <br> <br>
+        <div *ngIf="deleteDetails.get('employeeId')?.touched && deleteDetails.get('employeeId')?.invalid">
+           <p id="red">Employee Id is required.</p> 
+          </div>
+          <br>
+       
+    <button (click)="onDelete()">Delete</button>
+    <br>
+    <H4>{{deleteStatus}}</H4>
+</fieldset>
+  </form>
+<!-- <table border="1" [cellPadding]="20" [cellSpacing]="0" align="center">
     <thead>
-        <tr>
+        <-- <tr>
             <th>Id</th>
             <th>First name</th>
             <th>Last name</th>
@@ -17,8 +122,8 @@
                 <td>{{employee.firstname}}</td>
                 <td>{{employee.lastname}}</td>
                 <td>{{employee.email}}</td>
-                <td>{{employee.number}}</td>
+                <td>{{employee.idCard.number}}</td>
             </tr>
         }
     </tbody>
-</table>
+</table> -->
