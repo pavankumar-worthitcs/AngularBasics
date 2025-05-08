@@ -1,0 +1,20 @@
+<button [routerLink]="['/HomePage']" align="center" >Home</button>
+<form [formGroup]="deleteDetailsForm" align="center">
+    <fieldset>
+        <legend>Delete Employee Details</legend>
+        <br> <br>
+        <label>
+            EmployeeId <span style="color: red;">*</span>   :
+          </label>
+        <input formControlName="employeeId" type="number" placeholder="Enter your Employee Id"/>
+        <br> <br>
+        <div *ngIf="deleteDetailsForm.get('employeeId')?.touched && deleteDetailsForm.get('employeeId')?.invalid">
+           <p id="error">Employee Id is required.</p> 
+          </div>
+          <br>
+       
+    <button (click)="onDelete()">Delete</button>
+    <br> <br>
+    <H4>{{deleteStatus}}</H4>
+</fieldset>
+  </form>

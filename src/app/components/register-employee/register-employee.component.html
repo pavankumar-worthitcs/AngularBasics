@@ -1,0 +1,39 @@
+<button [routerLink]="['/HomePage']" align="center" >Home</button>
+
+<form  [formGroup]="employeeForm" align="center"> 
+    <fieldset>
+        <legend>Employee Details Registration</legend>
+    <br> <br>
+    <br>
+    <label >
+        First Name <span style="color: red;">*</span>  :
+      </label>
+    <input  formControlName="firstname" placeholder="Enter your first name.."/>
+    <br>
+    <div *ngIf="employeeForm.get('firstname')?.touched && employeeForm.get('firstname')?.invalid">
+        <p id="error">first name is required.</p>
+      </div>
+    <br>
+    <label>
+        Last Name <span style="color: red;">*</span>  :
+      </label>
+    <input formControlName="lastname" placeholder="Enter your last name.."/>
+    <br>
+     <div *ngIf="employeeForm.get('lastname')?.touched && employeeForm.get('lastname')?.invalid">
+        <p id="error">last name is required.</p>
+      </div>
+      <br>
+      <label>
+        Email <span style="color: red;">*</span>   :
+      </label>
+    <input formControlName="email" type="email" placeholder="Enter your email.."/>
+    <br> 
+    <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">
+        <p id="error">valid email is required.</p>
+      </div>
+      <br>
+    <button (click)="onRegister()">Register</button>
+    <br> <br>
+    <H4>{{createStatus}}</H4>
+</fieldset>
+  </form>

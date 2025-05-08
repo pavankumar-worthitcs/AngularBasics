@@ -1,0 +1,30 @@
+<button [routerLink]="['/HomePage']" align="center" >Home</button>
+<form [formGroup]="createIdForm" align="center">
+    <fieldset>
+        <legend>Create new Idcard For Employee</legend>
+        <br> <br>
+        <label>
+            EmployeeId <span style="color: red;">*</span>   :
+          </label>
+        <input formControlName="employeeId" type="number" placeholder="Enter your Employee id.."/>
+        <br> <br>
+        <div *ngIf="createIdForm.get('employeeId')?.touched && createIdForm.get('employeeId')?.invalid">
+            <p id="error">Employee Id is required.</p>
+          </div>
+          <br>
+        <div formGroupName="IdCard">
+            <label>
+                IdCard Number <span style="color: red;">*</span>   :
+              </label>
+    <input formControlName="number"  placeholder="Enter Idcard Number.."/></div>
+    <br>
+    <div *ngIf="createIdForm.get('IdCard.number')?.touched && createIdForm.get('IdCard.number')?.invalid">
+        <p id="error">Id card number is required</p>
+      </div>
+    <br>
+    <button (click)="onUpdate()">Create</button>
+    <br> <br>
+    <H4>{{updateStatus}}</H4>
+</fieldset>
+  </form>
+  

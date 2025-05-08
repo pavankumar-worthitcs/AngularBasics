@@ -1,0 +1,43 @@
+
+<section id="navigation">
+  <div id="searchBar">
+
+    <input type="text" [(ngModel)]="searchText" placeholder="Search.." id="search">
+    <button (click)="loadEmployees(searchText)" id="searchButtton">Search</button>
+    
+  </div>
+<div id="options">
+        <button [routerLink]="['/RegisterEmployee']" routerLinkActive="router-link-active" >Register Employee</button> 
+    <button [routerLink]="['/CreateIdCard']">Create ID Card</button>
+    <button [routerLink]="['/DeleteEmployee']">Delete Employee</button>
+</div>
+</section>
+<section id="homePage">
+<table border="1" [cellSpacing]="0" [cellPadding]="30" align="center" id="employeeTable">
+    <thead>
+         <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Idcard</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(employee of employees;track employee.id){
+
+            <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstname}}</td>
+                <td>{{employee.lastname}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.number}}</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+  
+</section>
+

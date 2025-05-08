@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from './employee/employee.component';
+import { Employee } from '../app/models/employee';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +11,12 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl+'fetchEmployeeWithMatchedData/wcs/1/5');
+  searchedEmployees(searchText : string): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl+`fetchEmployeeWithMatchedData/1/10?data=${searchText}`);
+  }
+
+  getAllEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl+"employeesList");
   }
 
   addEmployee(employee: Employee): Observable<Employee> {
