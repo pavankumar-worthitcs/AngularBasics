@@ -1,33 +1,67 @@
+<button [routerLink]="['/HomePage']" align="center">Home</button>
 
-<button [routerLink]="['/HomePage']" align="center" >Home</button>
-<form  [formGroup]="updateForm" align="center"> 
-    <fieldset>
-        <legend>Update Your Details </legend>
-    <br> <br>
-    <br>
-    <label >
-        First Name <span style="color: red;">*</span>  :
-      </label>
-    <input  formControlName="firstname" placeholder="Enter your first name.."/>
-    <br>
+<form [formGroup]="updateForm" align="center">
+  <fieldset>
+    <legend>Update Your Details</legend>
+    <ng-template
+      #formField
+      let-label="label"
+      let-controlName="controlName"
+      let-type="type"
+      let-placeholder="placeholder"
+    >
+      <div class="form-field">
+        <label>{{ label }} <span style="color: red">*</span>:</label>
+        <input
+          [formControlName]="controlName"
+          [type]="type"
+          [placeholder]="placeholder"
+        /><br /><br />
+      </div>
+    </ng-template>
 
-    <br>
-    <label>
-        Last Name <span style="color: red;">*</span>  :
-      </label>
-    <input formControlName="lastname" placeholder="Enter your last name.."/>
-    <br>
+    <ng-container
+      *ngTemplateOutlet="
+        formField;
+        context: {
+          label: 'First Name',
+          controlName: 'firstname',
+          type: 'text',
+          placeholder: 'Enter your first name..'
+        }
+      "
+    >
+    </ng-container>
 
-      <br>
-      <label>
-        Email <span style="color: red;">*</span>   :
-      </label>
-    <input formControlName="email" type="email" placeholder="Enter your email.."/>
-    <br> 
-  
-      <br>
-    <button (click)="updateEmployee()" [routerLink]="['/UpdateEmployee']" >Update</button>
-    <br> <br>
-    <H5 style="color: rgb(2, 106, 2);" >{{updateStatus}}</H5>
-</fieldset>
-  </form>
+    <ng-container
+      *ngTemplateOutlet="
+        formField;
+        context: {
+          label: 'Last Name',
+          controlName: 'lastname',
+          type: 'text',
+          placeholder: 'Enter your last name..'
+        }
+      "
+    >
+    </ng-container>
+
+    <ng-container
+      *ngTemplateOutlet="
+        formField;
+        context: {
+          label: 'Email',
+          controlName: 'email',
+          type: 'email',
+          placeholder: 'Enter your email..'
+        }
+      "
+    >
+    </ng-container>
+
+    <button (click)="updateEmployee()" [routerLink]="['/UpdateEmployee']">
+      Update
+    </button>
+    <h5 style="color: rgb(2, 106, 2)">{{ updateStatus }}</h5>
+  </fieldset>
+</form>

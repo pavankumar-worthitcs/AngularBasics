@@ -1,48 +1,77 @@
-
 <section id="navigation">
   <div id="searchBar">
-
-    <input type="text" [(ngModel)]="searchText" placeholder="Search.." id="search">
-    <button (click)="loadEmployees(searchText)" id="searchButtton">Search</button>
-    
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search.."
+      id="search"
+    />
+    <button (click)="loadEmployees(searchText)" id="searchButtton">
+      Search
+    </button>
   </div>
-<div id="options">
-        <a [routerLink]="['/RegisterEmployee']" id="nav">Register Employee</a> 
+  <div id="options">
+    <a [routerLink]="['/RegisterEmployee']" id="nav">Register Employee</a>
     <a [routerLink]="['/CreateIdCard']" id="nav">Create ID Card</a>
     <a [routerLink]="['/DeleteEmployee']" id="nav">Delete Employee</a>
-</div>
+  </div>
 </section>
 <section id="homePage">
-<table  [cellSpacing]="0" [cellPadding]="15" align="center" id="employeeTable">
-        <thead>
-          <tr style="height: 40px;background-color: rgb(58, 126, 209); color: aliceblue;">
-            <th> Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Idcard</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-        @for(employee of employees;track employee.id;let isOdd = $odd){
-            <tr id="data">
-                <td> <a [routerLink]="['/employee',employee.id]" style="text-decoration: none; color:black">{{employee.id}}</a></td>
-                <td>{{employee.firstname}}</td>
-                <td>{{employee.lastname}}</td>
-                <td>{{employee.email}}</td>
-                <td>{{employee.number}}</td>
-                <td><span class="material-icons" [routerLink]="['/UpdateEmployee',employee.id]" id="editIcon">edit_note</span> <span class="material-icons" (click)="openConfirmDialog(employee.id)" id="deleteIcon">delete_forever</span></td>
-          </tr>
-         
-        }
-        </tbody>
-      </table>
-      <mat-paginator
-        [length]="totalRecords"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[3,5,7,9]"
-        (page)="onPageChange($event)">
-      </mat-paginator>
-  </section>
-  
+  <table [cellSpacing]="0" [cellPadding]="15" align="center" id="employeeTable">
+    <thead>
+      <tr
+        style="
+          height: 40px;
+          background-color: rgb(58, 126, 209);
+          color: aliceblue;
+        "
+      >
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Idcard</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(employee of employees;track employee.id;let isOdd = $odd){
+      <tr id="data">
+        <td>
+          <a
+            [routerLink]="['/employee', employee.id]"
+            style="text-decoration: none; color: black"
+            >{{ employee.id }}</a
+          >
+        </td>
+        <td>{{ employee.firstname }}</td>
+        <td>{{ employee.lastname }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.number }}</td>
+        <td>
+          <span
+            class="material-icons"
+            [routerLink]="['/UpdateEmployee', employee.id]"
+            id="editIcon"
+            >edit_note</span
+          >
+          <span
+            class="material-icons"
+            (click)="openDeleteConfirmDialog(employee.id)"
+            id="deleteIcon"
+            >delete_forever</span
+          >
+        </td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+  <mat-paginator
+    [length]="totalRecords"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[3, 5, 7, 9]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</section>
