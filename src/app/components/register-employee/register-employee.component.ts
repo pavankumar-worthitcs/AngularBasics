@@ -24,7 +24,6 @@ export class RegisterEmployeeComponent implements OnInit {
     });
   }
 onRegister(): void{
-  console.log("onregister called");
     this.employeeForm.markAllAsTouched();
     if (this.employeeForm.invalid){
       return

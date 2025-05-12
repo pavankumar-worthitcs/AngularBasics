@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from '../app/models/employee';
+import { Employee } from './models/employee';
+import { PaginatedDTOResponse } from './models/paginated-dtoresponse';
+import { EmployeeDTO } from './models/employee-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,12 +13,20 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  searchedEmployees(searchText : string): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl+`fetchEmployeeWithMatchedData/1/10?data=${searchText}`);
+  searchedEmployees(searchText: string, page: number, size: number): Observable<PaginatedDTOResponse> {
+    return this.http.get<PaginatedDTOResponse>(this.baseUrl+`fetchEmployeeWithMatchedData/${page}/${size}?data=${searchText}`);
   }
 
   getAllEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl+"employeesList");
+  }
+
+  updateEmployee(employeeId:number,employee:EmployeeDTO):Observable<void>{
+    return this.http.put<void>(this.baseUrl+`updateEmployee/${employeeId}`,employee);
+  }
+
+  getEmployeeById(employeeId:number): Observable<Employee> {
+    return this.http.get<Employee>(this.baseUrl+`fetchEmployeeById/${employeeId}`);
   }
 
   addEmployee(employee: Employee): Observable<Employee> {

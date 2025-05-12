@@ -7,37 +7,42 @@
     
   </div>
 <div id="options">
-        <button [routerLink]="['/RegisterEmployee']" routerLinkActive="router-link-active" >Register Employee</button> 
-    <button [routerLink]="['/CreateIdCard']">Create ID Card</button>
-    <button [routerLink]="['/DeleteEmployee']">Delete Employee</button>
+        <a [routerLink]="['/RegisterEmployee']" id="nav">Register Employee</a> 
+    <a [routerLink]="['/CreateIdCard']" id="nav">Create ID Card</a>
+    <a [routerLink]="['/DeleteEmployee']" id="nav">Delete Employee</a>
 </div>
 </section>
 <section id="homePage">
-<table border="1" [cellSpacing]="0" [cellPadding]="30" align="center" id="employeeTable">
-    <thead>
-         <tr>
-            <th>Id</th>
+<table  [cellSpacing]="0" [cellPadding]="15" align="center" id="employeeTable">
+        <thead>
+          <tr style="height: 40px;background-color: rgb(58, 126, 209); color: aliceblue;">
+            <th> Id</th>
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
             <th>Idcard</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(employee of employees;track employee.id){
-
-            <tr>
-                <td>{{employee.id}}</td>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        @for(employee of employees;track employee.id;let isOdd = $odd){
+            <tr id="data">
+                <td> <a [routerLink]="['/employee',employee.id]" style="text-decoration: none; color:black">{{employee.id}}</a></td>
                 <td>{{employee.firstname}}</td>
                 <td>{{employee.lastname}}</td>
                 <td>{{employee.email}}</td>
                 <td>{{employee.number}}</td>
-                
-            </tr>
+                <td><span class="material-icons" [routerLink]="['/UpdateEmployee',employee.id]" id="editIcon">edit_note</span> <span class="material-icons" (click)="openConfirmDialog(employee.id)" id="deleteIcon">delete_forever</span></td>
+          </tr>
+         
         }
-    </tbody>
-</table>
-
+        </tbody>
+      </table>
+      <mat-paginator
+        [length]="totalRecords"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[3,5,7,9]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+  </section>
   
-</section>
-

@@ -1,0 +1,33 @@
+
+<button [routerLink]="['/HomePage']" align="center" >Home</button>
+<form  [formGroup]="updateForm" align="center"> 
+    <fieldset>
+        <legend>Update Your Details </legend>
+    <br> <br>
+    <br>
+    <label >
+        First Name <span style="color: red;">*</span>  :
+      </label>
+    <input  formControlName="firstname" placeholder="Enter your first name.."/>
+    <br>
+
+    <br>
+    <label>
+        Last Name <span style="color: red;">*</span>  :
+      </label>
+    <input formControlName="lastname" placeholder="Enter your last name.."/>
+    <br>
+
+      <br>
+      <label>
+        Email <span style="color: red;">*</span>   :
+      </label>
+    <input formControlName="email" type="email" placeholder="Enter your email.."/>
+    <br> 
+  
+      <br>
+    <button (click)="updateEmployee()" [routerLink]="['/UpdateEmployee']" >Update</button>
+    <br> <br>
+    <H5 style="color: rgb(2, 106, 2);" >{{updateStatus}}</H5>
+</fieldset>
+  </form>
